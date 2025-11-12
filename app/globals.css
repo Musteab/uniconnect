@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #1D3557;
+  --color-secondary: #457B9D;
+  --color-accent: #2A9D8F;
+  --color-light: #F5F5F5;
+  --color-dark: #333333;
+}
+
+html, body {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-[#0B0F19] text-dark antialiased; /* dark canvas, light text via theme.dark */
+}
+
+.glass {
+  background: rgba(15, 23, 42, 0.6);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.container-px {
+  @apply px-4 sm:px-6 lg:px-8;
+}
