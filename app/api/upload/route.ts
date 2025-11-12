@@ -28,8 +28,8 @@ export async function POST(req: NextRequest) {
     return new Response("Too Many Requests", { status: 429, headers: { "Retry-After": Math.ceil((cur.reset - now)/1000).toString() } });
   }
 
-  const session = await getServerSession(authOptions as any);
-  if (!session || (session.user as any)?.role !== "admin") {
+  const session: any = await getServerSession(authOptions as any);
+  if (!session || session?.user?.role !== "admin") {
     return new Response("Unauthorized", { status: 401 });
   }
 
