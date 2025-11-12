@@ -1,9 +1,9 @@
 "use client";
-import Link from "next/link";
+import Link, { type LinkProps } from "next/link";
 import clsx from "clsx";
 
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  href?: string;
+  href?: LinkProps["href"];
   variant?: "primary" | "secondary" | "ghost";
 };
 
@@ -28,4 +28,3 @@ export default function Button({ href, className, children, variant = "primary",
     </button>
   );
 }
-
