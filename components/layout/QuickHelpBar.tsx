@@ -9,15 +9,14 @@ export default function QuickHelpBar() {
           <MessageCircle className="h-4 w-4" /> WhatsApp
         </a>
         <span className="text-white/30">|</span>
-        <a href="tel:+60" className="flex items-center gap-2 text-sm hover:text-accent">
+        <a href="tel:+60143859084" className="flex items-center gap-2 text-sm hover:text-accent">
           <Phone className="h-4 w-4" /> Call
         </a>
         <span className="text-white/30">|</span>
-        <a href="mailto:hello@uniconnect.example.com" className="flex items-center gap-2 text-sm hover:text-accent">
+        <a href="mailto:uniconnectagency@gmail.com" className="flex items-center gap-2 text-sm hover:text-accent">
           <Mail className="h-4 w-4" /> Email
         </a>
       </div>
     </div>
   );
 }
-

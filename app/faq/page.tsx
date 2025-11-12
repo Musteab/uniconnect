@@ -85,7 +85,7 @@ export default function FaqPage() {
     <PageTransition>
       <section className="container-px max-w-5xl mx-auto py-10">
         <h1 className="text-3xl font-semibold">Frequently Asked Questions</h1>
-        <p className="text-dark/70 mt-2">Common questions about studying in Malaysia. Use left/right arrows to navigate between questions. Deep link to any item with #faq-id.</p>
+        <p className="text-dark/70 mt-2">Common questions about studying in Malaysia.</p>
         <div className="mt-6">
           <AccessibleFaq items={items} />
         </div>

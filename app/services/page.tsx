@@ -49,9 +49,13 @@ export default function ServicesPage() {
           <div className="mt-12">
             <h2 className="text-2xl font-medium">How We Work</h2>
             <div className="mt-4 flex justify-center">
-              <div className="w-48 h-48 rounded-xl border border-white/10 bg-white/70 text-slate-900 grid place-items-center text-center text-sm p-3">
-                here is a video that explains
-              </div>
+              <video
+                className="w-full max-w-3xl rounded-xl border border-white/10"
+                src="https://res.cloudinary.com/dqweuq8ic/video/upload/v1762952822/uniconnect/how-we-work.mp4"
+                controls
+                playsInline
+                preload="metadata"
+              />
             </div>
           </div>
       </div>
@@ -66,7 +70,7 @@ const flowSteps: { title: string; detail: string; eta: string }[] = [
   {
     title: "Free Consultation",
     detail:
-      "Discuss your academic goals, interests, and preferred study destinations. We assess your profile and provide personalized advice on course options and eligibility.",
+      "Discuss your academic goals, interests, and preferred universities. We assess your profile and provide personalized advice on course options and eligibility.",
     eta: "30–60 minutes",
   },
   {
@@ -90,7 +94,7 @@ const flowSteps: { title: string; detail: string; eta: string }[] = [
   {
     title: "Arrival",
     detail:
-      "Settle into your new environment smoothly. Our local support team assists with orientation, airport pickup (if applicable), and student registration.",
+      "Settle into your new environment smoothly. Our local support team assists with orientation, airport pickup (free of charge), and student registration.",
     eta: "Upon arrival",
   },
 ];

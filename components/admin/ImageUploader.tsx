@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import Button from "@/components/ui/Button";
-import { compressImageToBase64 } from "@/lib/utils";
 import { MediaItem, upsertMedia, uuid } from "@/lib/storage";
 
 export default function ImageUploader({ onUploaded }: { onUploaded?: (item: MediaItem) => void }) {
@@ -12,15 +11,18 @@ export default function ImageUploader({ onUploaded }: { onUploaded?: (item: Medi
   async function handleFile(file?: File) {
     if (!file) return;
     if (!/image\/(jpeg|png|webp)/.test(file.type)) return alert("Unsupported format");
-    if (file.size > 5 * 1024 * 1024) {
-      // compress
-      setLoading(true);
-      const dataUrl = await compressImageToBase64(file);
+    const fd = new FormData();
+    fd.append("file", file);
+    setLoading(true);
+    try {
+      const res = await fetch("/api/upload", { method: "POST", body: fd });
+      if (!res.ok) throw new Error("Upload failed");
+      const data = await res.json();
+      setPreview(String(data.url));
+    } catch (e) {
+      alert("Upload failed");
+    } finally {
       setLoading(false);
-      setPreview(dataUrl);
-    } else {
-      const dataUrl = await compressImageToBase64(file, 1600, 0.85);
-      setPreview(dataUrl);
     }
   }
 
@@ -29,7 +31,7 @@ export default function ImageUploader({ onUploaded }: { onUploaded?: (item: Medi
     const item: MediaItem = {
       id: uuid(),
       type: "image",
-      dataUrl: preview,
+      dataUrl: preview, // now a Cloudinary URL
       alt,
       createdAt: Date.now(),
     };
@@ -64,4 +66,3 @@ export default function ImageUploader({ onUploaded }: { onUploaded?: (item: Medi
     </div>
   );
 }
-

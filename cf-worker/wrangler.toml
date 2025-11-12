@@ -1,0 +1,7 @@
+name = "degree-helper"
+main = "worker.ts"
+compatibility_date = "2024-09-01"
+
+[ai]
+binding = "AI"
+

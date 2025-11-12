@@ -18,7 +18,7 @@ export default function ContactPage() {
           </div>
           <div className="rounded-xl border p-5">
             <div className="font-medium">Email</div>
-            <div className="text-sm text-dark/70">hello@uniconnect.example.com</div>
+            <div className="text-sm text-dark/70">uniconnectagency@gmail.com</div>
           </div>
           <div className="rounded-xl border p-5">
             <div className="font-medium">Hours</div>

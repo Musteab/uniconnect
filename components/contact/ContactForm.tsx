@@ -2,15 +2,12 @@
 import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
 import Button from "@/components/ui/Button";
-import { useState } from "react";
-import { sendContact } from "@/lib/email";
+import { useState, useEffect } from "react";
 
 export default function ContactForm() {
-  const [loading, setLoading] = useState(false);
-  const [ok, setOk] = useState<null | boolean>(null);
+  const [submitting, setSubmitting] = useState(false);
   const [prefill, setPrefill] = useState<string>("");
 
-  // read ?msg= from URL to prefill message
   useEffect(() => {
     try {
       const sp = new URLSearchParams(window.location.search);
@@ -19,37 +16,37 @@ export default function ContactForm() {
     } catch {}
   }, []);
 
-  async function onSubmit(formData: FormData) {
-    setLoading(true);
-    setOk(null);
-    const payload = Object.fromEntries(formData.entries());
-    const res = await sendContact({
-      name: String(payload.name || ""),
-      email: String(payload.email || ""),
-      phone: String(payload.phone || ""),
-      nationality: String(payload.nationality || ""),
-      interestedCountry: String(payload.interestedCountry || ""),
-      preferredCourse: String(payload.preferredCourse || ""),
-      message: String(payload.message || ""),
-    });
-    setOk(res.ok);
-    setLoading(false);
-  }
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitting(true);
+    const fd = new FormData(e.currentTarget);
+
+    const name = String(fd.get("name") || "");
+    const origin = String(fd.get("nationality") || "");
+    const program = String(fd.get("preferredCourse") || "");
+    const university = String(fd.get("university") || "");
+    const intake = String(fd.get("intake") || "");
+    const extra = String(fd.get("message") || prefill || "");
+
+    const sentence = `Hello, I am "${name}", from "${origin}", looking to study "${program}" from "${university}". The intake I am going for is "${intake}".${extra ? ` Additional info: ${extra}` : ""}`;
+    const url = `https://wa.me/60143859084?text=${encodeURIComponent(sentence)}`;
+    window.location.href = url;
+  };
 
   return (
-    <form action={onSubmit} className="mt-6 space-y-4">
+    <form onSubmit={onSubmit} className="mt-6 space-y-4">
       <div className="grid sm:grid-cols-2 gap-4">
         <Input name="name" label="Full Name" required />
-        <Input name="email" type="email" label="Email" required />
+        <Input name="email" type="email" label="Email" />
         <Input name="phone" label="Phone" />
-        <Input name="nationality" label="Nationality" />
-        <Input name="interestedCountry" label="Interested Country" />
-        <Input name="preferredCourse" label="Preferred Course" />
+        <Input name="nationality" label="Country of Origin" />
+        <Input name="interestedCountry" label="Interested Study Country" />
+        <Input name="preferredCourse" label="Program of Interest" />
+        <Input name="university" label="University" />
+        <Input name="intake" label="Intake" />
       </div>
-      <Textarea name="message" label="Message" required defaultValue={prefill} />
-      <Button disabled={loading}>{loading ? "Sending..." : "Submit"}</Button>
-      {ok === true && <div className="text-green-700 text-sm">Thanks! We will reach out soon.</div>}
-      {ok === false && <div className="text-red-700 text-sm">Something went wrong. Try again.</div>}
+      <Textarea name="message" label="Additional Information" defaultValue={prefill} />
+      <Button disabled={submitting}>{submitting ? "Redirecting..." : "Submit & WhatsApp"}</Button>
     </form>
   );
 }

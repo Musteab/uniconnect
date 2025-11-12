@@ -55,7 +55,7 @@ export default function AboutPage() {
 
         {/* Key Metrics */}
         <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {[{label:'Students Placed',value:'3,500+'},{label:'Partner Universities',value:'120+'},{label:'Countries',value:'5+'},{label:'Success Rate',value:'96%'}].map((m)=>(
+          {[{label:'Students Placed',value:'200+'},{label:'Partner Universities',value:'120+'},{label:'Countries',value:'5+'},{label:'Success Rate',value:'96%'}].map((m)=>(
             <div key={m.label} className="rounded-xl border p-5 text-center">
               <div className="text-2xl font-semibold">{m.value}</div>
               <div className="text-xs text-dark/70">{m.label}</div>

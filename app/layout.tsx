@@ -5,6 +5,9 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SeedData from "@/components/SeedData";
 import QuickHelpBar from "@/components/layout/QuickHelpBar";
+import JerseyPromo from "@/components/layout/JerseyPromo";
+import SessionProviderWrapper from "@/components/auth/SessionProviderWrapper";
+import UniBuddy from "@/components/layout/UniBuddy";
 
 export const metadata: Metadata = {
   title: {
@@ -23,15 +26,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen flex flex-col">
-        <AdminProvider>
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <SeedData />
-          <QuickHelpBar />
-        </AdminProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body className="min-h-screen flex flex-col" suppressHydrationWarning>
+        <SessionProviderWrapper>
+          <AdminProvider>
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+            <SeedData />
+            <QuickHelpBar />
+            <JerseyPromo />
+            <UniBuddy />
+          </AdminProvider>
+        </SessionProviderWrapper>
       </body>
     </html>
   );

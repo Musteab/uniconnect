@@ -10,19 +10,21 @@ export default function VideoUploader({ onUploaded, category }: { onUploaded?: (
 
   async function handleFile(file?: File) {
     if (!file) return;
-    if (!/video\/(mp4|webm)/.test(file.type)) return alert("Unsupported format");
+    if (!/video\/(mp4|webm|quicktime)/.test(file.type)) return alert("Unsupported format");
     if (file.size > 50 * 1024 * 1024) return alert("Max 50MB");
-    // For demo: read as base64 with fake progress
-    setProgress(5);
-    const reader = new FileReader();
-    reader.onload = () => {
-      setPreview(String(reader.result));
+    setProgress(10);
+    const fd = new FormData();
+    fd.append("file", file);
+    try {
+      const res = await fetch("/api/upload", { method: "POST", body: fd });
+      if (!res.ok) throw new Error("Upload failed");
+      const data = await res.json();
+      setPreview(String(data.url));
       setProgress(100);
-    };
-    reader.onprogress = (e) => {
-      if (e.lengthComputable) setProgress(Math.round((e.loaded / e.total) * 100));
-    };
-    reader.readAsDataURL(file);
+    } catch (e) {
+      alert("Upload failed");
+      setProgress(0);
+    }
   }
 
   function save() {
@@ -44,7 +46,7 @@ export default function VideoUploader({ onUploaded, category }: { onUploaded?: (
 
   return (
     <div className="space-y-3">
-      <input type="file" accept="video/mp4,video/webm" onChange={(e) => handleFile(e.target.files?.[0] ?? undefined)} />
+      <input type="file" accept="video/mp4,video/webm,video/quicktime" onChange={(e) => handleFile(e.target.files?.[0] ?? undefined)} />
       {progress > 0 && progress < 100 && (
         <div className="w-full h-2 rounded bg-light overflow-hidden">
           <div className="h-full bg-accent" style={{ width: `${progress}%` }} />

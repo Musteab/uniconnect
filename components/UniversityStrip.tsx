@@ -1,23 +1,23 @@
 import React from "react";
 
-// Use existing logo assets already used in the app
-import taylorsLogo from "../src/Logo_of_Taylor's_University.svg";
-import apuLogo from "../src/AsiaPacificUniversityOfTechnology&Innovation.svg.png";
-import sunwayLogo from "../src/sunway_logo.png";
-import segiLogo from "../src/ea-inst-logo-segi-univeristy-2023.webp";
-import cityLogo from "../src/city_uni_logo.png";
-import intiLogo from "../src/inti-university.webp";
-import uniklLogo from "../src/unikl-logo-png-new.png";
-import imuLogo from "../src/IMU_University_Malaysia.png";
-import mahsaLogo from "../src/Home 3-MAHSA Logo.png";
-import uocLogo from "../src/UoC_Logo.png";
-import alfaLogo from "../src/alfa-logo.png";
+// Cloudinary URLs (uploaded via bulk script)
+const taylorsLogo = "https://res.cloudinary.com/dqweuq8ic/image/upload/v1762953621/uniconnect/logos/src/logos/Logo_of_Taylor_s_University.svg";
+const apuLogo = "https://res.cloudinary.com/dqweuq8ic/image/upload/v1762953608/uniconnect/logos/src/logos/AsiaPacificUniversityOfTechnology_Innovation_svg.png";
+const sunwayLogo = "https://res.cloudinary.com/dqweuq8ic/image/upload/v1762953624/uniconnect/logos/src/logos/sunway_logo.png";
+const segiLogo = "https://res.cloudinary.com/dqweuq8ic/image/upload/v1762953613/uniconnect/logos/src/logos/ea-inst-logo-segi-univeristy-2023.webp";
+const cityLogo = "https://res.cloudinary.com/dqweuq8ic/image/upload/v1762953611/uniconnect/logos/src/logos/city_uni_logo.png";
+const intiLogo = "https://res.cloudinary.com/dqweuq8ic/image/upload/v1762953619/uniconnect/logos/src/logos/inti-university.webp";
+const uniklLogo = "https://res.cloudinary.com/dqweuq8ic/image/upload/v1762953632/uniconnect/logos/src/logos/unikl-logo-png-new.png";
+const imuLogo = "https://res.cloudinary.com/dqweuq8ic/image/upload/v1762953617/uniconnect/logos/src/logos/IMU_University_Malaysia.png";
+const mahsaLogo = "https://res.cloudinary.com/dqweuq8ic/image/upload/v1762953615/uniconnect/logos/src/logos/Home_3-MAHSA_Logo.png";
+const uocLogo = "https://res.cloudinary.com/dqweuq8ic/image/upload/v1762953634/uniconnect/logos/src/logos/UoC_Logo.png";
+const alfaLogo = "https://res.cloudinary.com/dqweuq8ic/image/upload/v1762953602/uniconnect/logos/src/logos/alfa-logo.png";
 
 type Item = {
   id: string;
   university: string;
   country: string;
-  logo: any; // static import (string URL)
+  logo: string;
   learnMoreUrl: string;
 };
 
@@ -79,7 +79,7 @@ export default function UniversityStrip() {
               <span id={`uni-${it.id}`} className="uniStrip-target" />
               <div className="uniStrip-card" role="group" aria-label={it.university}>
                 <div className="uniStrip-logoBox">
-                  <img className="uniStrip-logo" src={(it.logo as any).src ?? it.logo} alt={`${it.university} logo`} />
+                  <img className="uniStrip-logo" src={it.logo} alt={`${it.university} logo`} />
                 </div>
                 <div className="uniStrip-name">{it.university}</div>
                 <div className="uniStrip-country">{it.country}</div>
@@ -91,4 +91,3 @@ export default function UniversityStrip() {
     </section>
   );
 }
-

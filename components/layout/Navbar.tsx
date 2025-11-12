@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import uniLogo from "../../src/uni-connect-logo.png";
+const uniLogo = "https://res.cloudinary.com/dqweuq8ic/image/upload/v1762953626/uniconnect/logos/src/logos/uni-connect-logo.png";
 import clsx from "clsx";
 
 const links = [
@@ -11,7 +11,6 @@ const links = [
   { href: "/services", label: "Services" },
   { href: "/universities", label: "Universities" },
   { href: "/success-stories", label: "Stories" },
-  { href: "/gallery", label: "Gallery" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" }
 ];
@@ -40,7 +39,7 @@ export default function Navbar() {
             </Link>
           ))}
         </nav>
-        {/* Admin link hidden; access via direct URL */}
+        {/* Auth controls removed per request */}
       </div>
     </header>
   );

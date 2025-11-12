@@ -7,7 +7,7 @@ import Image from "next/image";
 import Modal from "@/components/ui/Modal";
 import { useState } from "react";
 import VideoThumbnail from "@/components/stories/VideoThumbnail";
-import bigLogo from "../src/uni-connect-logo.png";
+const bigLogo = "https://res.cloudinary.com/dqweuq8ic/image/upload/v1762952173/uniconnect/z6ojkkeopr3ahmdlbbyl.png";
 import UniversityStrip from "@/components/UniversityStrip";
 
 export default function HomePage() {
@@ -15,11 +15,13 @@ export default function HomePage() {
     <PageTransition>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <video className="absolute inset-0 -z-20 h-full w-full object-cover" src="/hero-video.mp4" autoPlay muted loop playsInline preload="metadata" />
+        <video className="absolute inset-0 -z-20 h-full w-full object-cover" src="https://res.cloudinary.com/dqweuq8ic/video/upload/v1762952807/uniconnect/hero-video.mp4" autoPlay muted loop playsInline preload="metadata" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-br from-black/60 via-black/40 to-black/30" />
         <div className="container-px max-w-7xl mx-auto py-20 sm:py-28">
-          <div className="hidden sm:block absolute left-6 top-1/2 -translate-y-1/2 drop-shadow-lg w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80">
-            <Image src={bigLogo} alt="Uni-Connect" fill priority sizes="(max-width: 768px) 14rem, (max-width: 1024px) 18rem, 20rem" className="object-contain" />
+          <div className="hidden lg:block absolute left-6 top-1/2 -translate-y-1/2 drop-shadow-lg">
+            <div className="relative w-56 h-56 xl:w-72 xl:h-72 2xl:w-80 2xl:h-80">
+              <Image src={bigLogo} alt="Uni-Connect" fill priority sizes="(max-width: 768px) 14rem, (max-width: 1024px) 18rem, 20rem" className="object-contain" />
+            </div>
           </div>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -39,9 +41,9 @@ export default function HomePage() {
 
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
-              { icon: GraduationCap, label: "Students Placed", value: "3,500+" },
+              { icon: GraduationCap, label: "Students Placed", value: "200+" },
               { icon: Building2, label: "Partner Universities", value: "120+" },
-              { icon: CheckCircle2, label: "Success Rate", value: "96%" }
+              { icon: CheckCircle2, label: "Success Rate", value: "100%" }
             ].map((s, i) => (
               <motion.div key={s.label} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ delay: 0.1 * i }} className="glass rounded-xl p-5 flex items-center gap-3">
                 <s.icon className="text-accent" />
@@ -94,10 +96,10 @@ export default function HomePage() {
 
 // Stories data and grid
 const stories = [
-  { name: "Hudhaifa", from: "Kenya", to: "Malaysia", uni: "Taylor's University", src: "/stories/hudhaifa.mov" },
-  { name: "Gracious", from: "Zimbabwe", to: "Malaysia", uni: "APU", src: "/stories/gracious.mov" },
-  { name: "Lavendar", from: "Kenya", to: "Malaysia", uni: "Sunway", src: "/stories/lavender.mov" },
-  { name: "Shumira", from: "Zimbabwe", to: "Malaysia", uni: "UCSI", src: "/stories/shumira.mov" },
+  { name: "Hudhaifa", from: "Kenya", to: "Malaysia", uni: "Taylor's University", src: "https://res.cloudinary.com/dqweuq8ic/video/upload/v1762952859/uniconnect/stories/hudhaifa.mov" },
+  { name: "Gracious", from: "Zimbabwe", to: "Malaysia", uni: "APU", src: "https://res.cloudinary.com/dqweuq8ic/video/upload/v1762952849/uniconnect/stories/gracious.mov" },
+  { name: "Lavendar", from: "Kenya", to: "Malaysia", uni: "Sunway", src: "https://res.cloudinary.com/dqweuq8ic/video/upload/v1762952876/uniconnect/stories/lavender.mov" },
+  { name: "Shumira", from: "Zimbabwe", to: "Malaysia", uni: "UCSI", src: "https://res.cloudinary.com/dqweuq8ic/video/upload/v1762952897/uniconnect/stories/shumira.mov" },
 ];
 
 function StoriesGrid() {
@@ -131,4 +133,3 @@ function StoriesGrid() {
     </>
   );
 }
-

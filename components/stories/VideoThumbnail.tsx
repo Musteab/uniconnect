@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useRef, useState } from "react";
 
 export default function VideoThumbnail({ src, alt, className }: { src: string; alt: string; className?: string }) {
@@ -44,4 +44,6 @@ export default function VideoThumbnail({ src, alt, className }: { src: string; a
     </div>
   );
 }
+
+
 

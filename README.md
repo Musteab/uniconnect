@@ -1,59 +1,110 @@
-# Uni-Connect Showcase (Next.js 14, App Router)
+﻿# Uni‑Connect (Next.js 14) — built by a dev for a friend
 
-A modern, multi-page website for Uni-Connect, a Malaysian student consultancy. Built with Next.js 14 (App Router), TypeScript, Tailwind CSS, and Framer Motion. Includes a simple localStorage-backed Admin panel for demo content editing and a media library storing Base64 images/videos.
+A modern, production‑ready site for a Malaysian student consultancy. I’m building this for a friend — fast, simple and focused on real leads: clear services, success stories, quick contact, and an integrated “UniBuddy” advisor.
 
-## Tech
+## Highlights
+- Clean UX, responsive, animated with Framer Motion
+- Real contact surface: WhatsApp, call, email (footer + quick help bar)
+- Universities grid + partner strip
+- Student stories (Cloudinary videos)
+- Jersey promo popup (session‑only dismiss)
+- UniBuddy (Workers AI) floating chat — short, direct answers
+- Admin: protected dashboard, media manager, Cloudinary uploads + Base64→Cloudinary migration
+
+## Tech Stack
 - Next.js 14 (App Router) + TypeScript
-- Tailwind CSS
-- Framer Motion
-- Lucide React icons
-- EmailJS (client) with demo-mode fallback
+- Tailwind CSS + Framer Motion
+- NextAuth (Credentials) for admin
+- Cloudinary (CDN) for images & videos
+- Cloudflare Workers AI for UniBuddy
 
-## Getting Started
+## Features (Overview)
+- Home: hero video + brand logo, KPIs, services preview, UniBuddy, stories
+- Services: clear cards, process flow, “How we work” video
+- Universities: grid with logos (Cloudinary) + “...and many more”
+- Success Stories: short video highlights
+- Contact: form + quick actions (WhatsApp, call, email)
+- Jersey Promo: tasteful bottom‑right video popup, dismiss for session
+- Admin: `/admin` (credentials), media manager, instant uploads to Cloudinary, Base64 migration tool with toasts
 
-1. Install dependencies
+## Environment
+Create `.env.local` (example keys only — set yours):
 ```
-pnpm i
-# or
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your_nextauth_secret
+
+ADMIN_EMAIL=admin@example.com
+ADMIN_PASSWORD=strong_password
+
+CLOUDINARY_CLOUD_NAME=...
+CLOUDINARY_API_KEY=...
+CLOUDINARY_API_SECRET=...
+
+# Cloudflare Worker (UniBuddy adapter)
+CF_WORKER_URL=https://<your-worker>.workers.dev
+```
+
+## Dev
+```
 npm i
-# or
-yarn
-```
-
-2. Run the dev server
-```
 npm run dev
 ```
-Open http://localhost:3000.
+Open http://localhost:3000
 
-## Admin
-- Visit `/admin`
-- Demo password: `admin123`
-- Content, Media Library, and Submissions pages use `localStorage`.
+## Admin & Media
+- Login: `/login` (Credentials from `.env.local`)
+- Admin dashboard: `/admin`
+- Media Manager: `/admin/media`
+  - Image/Video upload → Cloudinary via signed `/api/upload`
+  - “Migrate Base64 to Cloudinary” one‑click tool with progress toasts
 
-## Email/Forms
-- In demo mode, contact form saves submissions locally.
-- To enable EmailJS, set `.env.local`:
+## UniBuddy (Workers AI)
+- Worker files: `cf-worker/worker.ts`, `cf-worker/wrangler.toml`
+- Default model: `@cf/meta/llama-3.1-8b-instruct`
+- System prompt: concise, direct replies (<= ~80 words)
+- Endpoints accepted: POST `/api/degree-helper` and `/`
+
+Run locally / deploy Worker:
 ```
-NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service
-NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template
-NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+npm i -g wrangler
+wrangler login
+npm run wrangler:dev     # local dev
+npm run wrangler:deploy  # deploy to Cloudflare
 ```
-Then set `DEMO_MODE=false` in `lib/utils.ts`.
+Set `CF_WORKER_URL` to your Worker URL and restart Next dev. The adapter (app/api/degree-helper/route.ts) forwards requests server‑side — no client secrets.
 
-## Media Uploads
-- Images: JPG/PNG/WebP up to ~5MB (compressed client-side to JPEG).
-- Videos: MP4/WebM up to 50MB (stored as Base64 for demo; use a CDN for production).
+## Cloudinary Assets
+- Bulk upload existing media:
+```
+npm run cloudinary:upload            # uploads public/* → Cloudinary
+node scripts/cloudinary-bulk-upload.mjs src/logos uniconnect/logos cloudinary-logos-map.json
+```
+- We’ve already swapped references to Cloudinary URLs across the app (logos, videos, hero). Next/Image is configured for `res.cloudinary.com`.
 
-## Project Structure
-- `app/` pages with App Router
-- `components/` UI, layout, admin tools
-- `context/` simple admin auth context
-- `lib/` storage, email, utils
+## Deploy (recommended: Vercel)
+1) Push to GitHub
+```
+git init
+git add .
+git commit -m "chore: init"
+git branch -M main
+git remote add origin <your_repo>
+git push -u origin main
+```
+2) Import on Vercel → set env vars (from `.env.local`) → Deploy
+3) Optional: protect `main` & use PR previews
 
-## Deployment
-- Ready for Vercel: `npm run build` then deploy.
-- Sitemap: `/sitemap.xml`; Robots: `/robots.txt`.
+## Notes for Production
+- Keep admin credentials strong (or switch to OAuth/provider).
+- Rate‑limit upload API (basic limiter included; consider Redis/Upstash for durability).
+- Validate mime types and size server‑side (we do basic checks now).
+- Use HTTPS for NEXTAUTH_URL in production.
 
-## Notes
-- This is a demo-friendly baseline. For production, replace Base64 media with Cloudinary/Uploadcare, and secure admin auth with a real backend/session.
+## Contact Links (live)
+- Email: `uniconnectagency@gmail.com`
+- WhatsApp: `+60143859084`
+- Instagram: https://www.instagram.com/uni_connect24?igsh=bnNkcGNhYjg5Nm1j
+- TikTok: https://www.tiktok.com/@uni_connect24?_r=1&_t=ZM-91Le4VdK7LM
+
+---
+Built with care by a developer for a friend — always shipping what helps students move forward fastest.
