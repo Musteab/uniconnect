@@ -18,8 +18,8 @@ export default function HomePage() {
         <video className="absolute inset-0 -z-20 h-full w-full object-cover" src="https://res.cloudinary.com/dqweuq8ic/video/upload/v1762952807/uniconnect/hero-video.mp4" autoPlay muted loop playsInline preload="metadata" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-br from-black/60 via-black/40 to-black/30" />
         <div className="container-px max-w-7xl mx-auto py-20 sm:py-28">
-          <div className="hidden lg:block absolute left-6 top-1/2 -translate-y-1/2 drop-shadow-lg">
-            <div className="relative w-56 h-56 xl:w-72 xl:h-72 2xl:w-80 2xl:h-80">
+          <div className="block absolute left-3 top-20 lg:left-6 lg:top-1/2 lg:-translate-y-1/2 drop-shadow-lg">
+            <div className="relative w-28 h-28 sm:w-40 sm:h-40 lg:w-56 lg:h-56 xl:w-72 xl:h-72 2xl:w-80 2xl:h-80">
               <Image src={bigLogo} alt="Uni-Connect" fill priority sizes="(max-width: 768px) 14rem, (max-width: 1024px) 18rem, 20rem" className="object-contain" />
             </div>
           </div>

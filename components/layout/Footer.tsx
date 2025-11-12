@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <footer className="border-t border-white/10 mt-10">
-      <div className="container-px max-w-7xl mx-auto py-8 text-sm text-dark/70 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div className="container-px max-w-7xl mx-auto py-8 pb-16 sm:pb-8 text-sm text-dark/70 flex flex-col sm:flex-row items-center justify-between gap-3">
         <div>© {new Date().getFullYear()} Uni-Connect. All rights reserved.</div>
         <div className="flex items-center gap-4">
           <a href="https://www.instagram.com/uni_connect24?igsh=bnNkcGNhYjg5Nm1j" target="_blank" rel="noreferrer" aria-label="Instagram" className="hover:text-accent transition-colors">

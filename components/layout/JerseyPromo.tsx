@@ -33,7 +33,7 @@ export default function JerseyPromo() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 24, scale: 0.98 }}
           transition={{ type: "spring", stiffness: 340, damping: 26 }}
-          className="fixed bottom-5 right-5 z-50 w-[320px] max-w-[92vw] rounded-xl border border-white/10 bg-[#0F172A] text-white shadow-2xl overflow-hidden"
+          className="fixed bottom-5 right-5 z-[70] w-[320px] max-w-[92vw] rounded-xl border border-white/10 bg-[#0F172A] text-white shadow-2xl overflow-hidden"
           role="dialog"
           aria-label="Uni-Connect Jersey Promo"
         >
