@@ -1,14 +1,52 @@
 "use client";
 import PageTransition from "@/components/layout/PageTransition";
-import { motion } from "framer-motion";
-import Button from "@/components/ui/Button";
-import { GraduationCap, Building2, CheckCircle2 } from "lucide-react";
-import Image from "next/image";
-import Modal from "@/components/ui/Modal";
-import { useState } from "react";
-import VideoThumbnail from "@/components/stories/VideoThumbnail";
-const bigLogo = "https://res.cloudinary.com/dqweuq8ic/image/upload/v1762952173/uniconnect/z6ojkkeopr3ahmdlbbyl.png";
 import UniversityStrip from "@/components/UniversityStrip";
+import VideoThumbnail from "@/components/stories/VideoThumbnail";
+import Button from "@/components/ui/Button";
+import Modal from "@/components/ui/Modal";
+import { stories as storyEntries } from "@/lib/stories";
+import type { LucideIcon } from "lucide-react";
+import {
+  Building2,
+  CalendarDays,
+  CheckCircle2,
+  FileCheck2,
+  Globe2,
+  GraduationCap,
+  MapPin,
+  Medal,
+  MessageCircle,
+  PhoneCall,
+  PlaneTakeoff,
+  ShieldCheck,
+  Sparkles,
+  UserCheck
+} from "lucide-react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { useState } from "react";
+
+const bigLogo = "https://res.cloudinary.com/dqweuq8ic/image/upload/v1762952173/uniconnect/z6ojkkeopr3ahmdlbbyl.png";
+const heroHighlights = [
+  { label: "Africa to Malaysia specialists", detail: "Dedicated mentors on WhatsApp every day." },
+  { label: "Scholarship-first planning", detail: "Average RM18k saved per intake." }
+];
+const quickWins: { title: string; detail: string; icon: LucideIcon }[] = [
+  { title: "Visa-ready docs", detail: "Personal checklist delivered within 24 hours.", icon: ShieldCheck },
+  { title: "Scholarship scan", detail: "Stack partial + merit funding in one view.", icon: Sparkles },
+  { title: "City match quiz", detail: "Pick lifestyle, we'll suggest the campus.", icon: MapPin }
+];
+const reasons: { title: string; copy: string; icon: LucideIcon }[] = [
+  { title: "Dedicated Advisors", copy: "One-to-one mentoring on academics, budget, and confidence.", icon: UserCheck },
+  { title: "Global Network", copy: "120+ partner universities with priority interview slots.", icon: Globe2 },
+  { title: "Scholarship Focus", copy: "We negotiate tuition rebates before you pay anything.", icon: Medal },
+  { title: "Visa Confidence", copy: "Document audits, mock interviews, and post-arrival care.", icon: ShieldCheck }
+];
+const journeySteps: { title: string; copy: string; meta: string; icon: LucideIcon }[] = [
+  { title: "Profile Deep-Dive", copy: "30-min discovery on Zoom to map target courses, budget, and timeline.", meta: "Day 1", icon: CalendarDays },
+  { title: "Offer & Funding Sprint", copy: "We polish SOPs, fast-track applications, and layer scholarships.", meta: "Days 3 - 10", icon: FileCheck2 },
+  { title: "Visa & Landing Prep", copy: "Medical, visa, housing, and airport pickup arranged in one checklist.", meta: "Days 11 - 21", icon: PlaneTakeoff }
+];
 
 export default function HomePage() {
   return (
@@ -17,12 +55,25 @@ export default function HomePage() {
       <section className="relative overflow-hidden">
         <video className="absolute inset-0 -z-20 h-full w-full object-cover" src="https://res.cloudinary.com/dqweuq8ic/video/upload/v1762952807/uniconnect/hero-video.mp4" autoPlay muted loop playsInline preload="metadata" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-br from-black/60 via-black/40 to-black/30" />
-        <div className="container-px max-w-7xl mx-auto py-20 sm:py-28">
-          <div className="block absolute left-3 top-20 lg:left-6 lg:top-1/2 lg:-translate-y-1/2 drop-shadow-lg">
+        <div className="relative container-px max-w-7xl mx-auto py-20 sm:py-28 md:pl-40 lg:pl-56 xl:pl-72">
+          <div className="hidden md:block absolute left-3 top-20 lg:left-6 lg:top-1/2 lg:-translate-y-1/2 drop-shadow-lg pointer-events-none">
             <div className="relative w-28 h-28 sm:w-40 sm:h-40 lg:w-56 lg:h-56 xl:w-72 xl:h-72 2xl:w-80 2xl:h-80">
               <Image src={bigLogo} alt="Uni-Connect" fill priority sizes="(max-width: 768px) 14rem, (max-width: 1024px) 18rem, 20rem" className="object-contain" />
             </div>
           </div>
+          <div className="md:hidden mb-6">
+            <div className="relative h-16 w-16">
+              <Image src={bigLogo} alt="Uni-Connect" fill sizes="64px" className="object-contain" />
+            </div>
+          </div>
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-white/80 backdrop-blur"
+          >
+            <Sparkles className="h-4 w-4 text-accent" /> 2026 intakes filling fast
+          </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -34,9 +85,36 @@ export default function HomePage() {
           <p className="mt-4 max-w-2xl text-lg text-white/85">
             Uni-Connect helps students get into top universities with expert guidance, visa support, and scholarships.
           </p>
-          <div className="mt-8 flex gap-3">
-            <Button href="https://wa.me/60143859084">Get Started</Button>
-            <Button href="/services" variant="secondary">Explore Services</Button>
+          <div className="mt-4 flex flex-wrap gap-3 text-sm text-white/80">
+            {heroHighlights.map((highlight) => (
+              <span key={highlight.label} className="rounded-full bg-white/10 px-4 py-2 backdrop-blur">
+                <span className="font-semibold text-white">{highlight.label}</span> {highlight.detail}
+              </span>
+            ))}
+          </div>
+          <div className="mt-8 flex flex-col sm:flex-row gap-3">
+            <Button href="https://wa.me/60143859084" className="w-full sm:w-auto">
+              Get Started
+            </Button>
+            <Button href="/services" variant="secondary" className="w-full sm:w-auto">
+              Explore Services
+            </Button>
+          </div>
+          <div className="mt-8 flex gap-4 overflow-x-auto pb-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:pb-0">
+            {quickWins.map((win) => {
+              const Icon = win.icon;
+              return (
+                <div key={win.title} className="min-w-[220px] rounded-2xl border border-white/10 bg-white/10 p-4 text-white/90 backdrop-blur">
+                  <div className="flex items-center gap-3">
+                    <span className="rounded-xl bg-white/15 p-2 text-white">
+                      <Icon className="h-4 w-4" />
+                    </span>
+                    <p className="text-sm font-semibold">{win.title}</p>
+                  </div>
+                  <p className="mt-3 text-xs text-white/70">{win.detail}</p>
+                </div>
+              );
+            })}
           </div>
 
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -54,19 +132,85 @@ export default function HomePage() {
               </motion.div>
             ))}
           </div>
+          <div className="mt-6 rounded-2xl border border-white/10 bg-white/10 p-4 text-white backdrop-blur flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-wide text-white/70">Need answers right now?</p>
+              <p className="text-lg font-semibold">Chat with a student mentor within minutes.</p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+              <Button href="https://wa.me/60143859084" className="w-full sm:w-auto gap-2">
+                <MessageCircle className="h-4 w-4" /> WhatsApp Mentor
+              </Button>
+              <Button href="tel:+60143859084" variant="secondary" className="w-full sm:w-auto gap-2 !bg-white/10 !text-white !border !border-white/30 hover:!bg-white/20">
+                <PhoneCall className="h-4 w-4" /> Schedule Call
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Why Choose */}
       <section className="container-px max-w-7xl mx-auto py-14">
-        <h2 className="text-2xl sm:text-3xl font-semibold">Why Choose Uni-Connect</h2>
+        <div className="max-w-3xl">
+          <h2 className="text-2xl sm:text-3xl font-semibold">Why Choose Uni-Connect</h2>
+          <p className="mt-3 text-dark/70">
+            Every intake gets a squad - advisors, visa experts, and alumni buddies - so you never feel alone, even when you're planning the move from your phone.
+          </p>
+        </div>
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {["Expert Advisors", "End-to-End Support", "Scholarship Focus", "Global Network"].map((f) => (
-            <motion.div key={f} whileHover={{ y: -4 }} className="rounded-xl border p-5 shadow-sm hover:shadow-glow transition">
-              <div className="text-lg font-medium">{f}</div>
-              <p className="text-sm text-dark/70 mt-2">We guide you through every step with care.</p>
-            </motion.div>
-          ))}
+          {reasons.map((reason) => {
+            const Icon = reason.icon;
+            return (
+              <motion.div key={reason.title} whileHover={{ y: -6 }} className="rounded-2xl border bg-white p-5 shadow-sm hover:shadow-glow transition">
+                <div className="flex items-center gap-3">
+                  <span className="rounded-xl bg-light p-3 text-primary">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <div className="text-lg font-semibold">{reason.title}</div>
+                </div>
+                <p className="text-sm text-dark/70 mt-3">{reason.copy}</p>
+              </motion.div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Journey */}
+      <section className="relative overflow-hidden py-14 bg-gradient-to-b from-[#050c1c] via-[#071631] to-[#050c1c] text-white">
+        <div className="pointer-events-none absolute inset-0 opacity-40">
+          <div className="absolute -top-32 left-1/4 h-64 w-64 rounded-full bg-primary/40 blur-3xl" />
+          <div className="absolute -bottom-24 right-1/4 h-64 w-64 rounded-full bg-secondary/40 blur-3xl" />
+        </div>
+        <div className="container-px relative max-w-7xl mx-auto">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-[0.3em] text-white/60">Your roadmap</p>
+              <h2 className="text-2xl sm:text-3xl font-semibold">Three agile steps to get you abroad</h2>
+            </div>
+            <p className="max-w-md text-sm text-white/80">
+              Each milestone is mobile friendly - track progress, upload docs, and receive nudges directly on WhatsApp or email.
+            </p>
+          </div>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {journeySteps.map((step, idx) => {
+              const Icon = step.icon;
+              return (
+                <div key={step.title} className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+                  <div className="flex items-center justify-between text-xs font-semibold uppercase text-white/60">
+                    <span>{step.meta}</span>
+                    <span className="rounded-full bg-white/10 px-3 py-1 text-white/80">Step {idx + 1}</span>
+                  </div>
+                  <div className="mt-4 flex items-center gap-3">
+                    <span className="rounded-xl bg-white/10 p-3">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <h3 className="text-lg font-semibold text-white">{step.title}</h3>
+                  </div>
+                  <p className="mt-3 text-sm text-white/80">{step.copy}</p>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
@@ -85,6 +229,28 @@ export default function HomePage() {
       {/* Partner Universities */}
       <UniversityStrip />
 
+      {/* CTA */}
+      <section className="container-px max-w-7xl mx-auto py-14">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-primary to-secondary text-white px-6 py-10 sm:px-10">
+          <div className="absolute inset-y-0 right-0 w-1/2 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_top,white,transparent)]" />
+          <div className="relative z-10 max-w-2xl space-y-4">
+            <p className="text-xs uppercase tracking-[0.3em] text-white/70">Ready?</p>
+            <h2 className="text-3xl font-semibold">Book a free 15-min strategy call</h2>
+            <p className="text-white/80">
+              Tell us your dream campus and budget. We will reply with a tailored short list, scholarship pointers, and a mobile-friendly plan within 24 hours.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button href="/contact" className="w-full sm:w-auto">
+                Book the Call
+              </Button>
+              <Button href="mailto:uniconnectagency@gmail.com" variant="secondary" className="w-full sm:w-auto !bg-white/10 !text-white !border !border-white/30 hover:!bg-white/20">
+                Send My Docs
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Student Stories */}
       <section className="container-px max-w-7xl mx-auto py-14">
         <h2 className="text-2xl sm:text-3xl font-semibold">Student Success Stories</h2>
@@ -94,35 +260,27 @@ export default function HomePage() {
   );
 }
 
-// Stories data and grid
-const stories = [
-  { name: "Hudhaifa", from: "Kenya", to: "Malaysia", uni: "Taylor's University", src: "https://res.cloudinary.com/dqweuq8ic/video/upload/v1762952859/uniconnect/stories/hudhaifa.mov" },
-  { name: "Gracious", from: "Zimbabwe", to: "Malaysia", uni: "APU", src: "https://res.cloudinary.com/dqweuq8ic/video/upload/v1762952849/uniconnect/stories/gracious.mov" },
-  { name: "Lavendar", from: "Kenya", to: "Malaysia", uni: "Sunway", src: "https://res.cloudinary.com/dqweuq8ic/video/upload/v1762952876/uniconnect/stories/lavender.mov" },
-  { name: "Shumira", from: "Zimbabwe", to: "Malaysia", uni: "UCSI", src: "https://res.cloudinary.com/dqweuq8ic/video/upload/v1762952897/uniconnect/stories/shumira.mov" },
-];
-
 function StoriesGrid() {
   const [open, setOpen] = useState<string | null>(null);
-  const active = stories.find((s) => s.src === open) || null;
+  const active = storyEntries.find((s) => s.src === open) || null;
   return (
     <>
       <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {stories.map((s) => (
+        {storyEntries.map((s) => (
           <button key={s.src} onClick={() => setOpen(s.src)} className="text-left rounded-xl border border-white/10 p-3 bg-light text-dark hover:shadow-glow transition">
             <div className="relative aspect-video rounded-md overflow-hidden">
               <VideoThumbnail src={s.src} alt={`${s.name} story`} className="w-full h-full" />
               <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition grid place-items-center text-white text-sm">Play</div>
             </div>
             <div className="mt-2 font-medium">{s.name}</div>
-            <div className="text-xs text-dark/70">{s.from} to {s.to} — {s.uni}</div>
+            <div className="text-xs text-dark/70">{s.from} to {s.to} - {s.uni}</div>
           </button>
         ))}
       </div>
       <Modal open={!!active} onClose={() => setOpen(null)}>
         {active && (
           <div className="text-slate-900">
-            <div className="font-semibold">{active.name} — {active.from} to {active.to}</div>
+            <div className="font-semibold">{active.name} - {active.from} to {active.to}</div>
             <div className="text-xs text-slate-600 mb-2">{active.uni}</div>
             <div className="w-full flex justify-center">
               <video src={active.src} controls className="w-full max-w-xl max-h-[60vh] rounded-md object-contain" />

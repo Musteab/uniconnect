@@ -1,14 +1,8 @@
 "use client";
-import { useState } from "react";
 import Modal from "@/components/ui/Modal";
 import VideoThumbnail from "@/components/stories/VideoThumbnail";
-
-const stories = [
-  { name: "Hudhaifa", from: "Kenya", to: "Malaysia", uni: "Taylor's University", src: "/stories/hudhaifa.mov", fromFlag: "🇰🇪", toFlag: "🇲🇾", blurb: "From Nairobi to Subang Jaya — Hudhaifa shares how Uni-Connect helped with shortlisting, application polishing, and a smooth enrollment at Taylor's." },
-  { name: "Gracious", from: "Zimbabwe", to: "Malaysia", uni: "APU", src: "/stories/gracious.mov", fromFlag: "🇿🇼", toFlag: "🇲🇾", blurb: "Gracious found the right tech pathway at APU. Visa guidance and scholarship insights made the journey quicker and more affordable." },
-  { name: "Lavendar", from: "Kenya", to: "Malaysia", uni: "Sunway", src: "/stories/lavender.mov", fromFlag: "🇰🇪", toFlag: "🇲🇾", blurb: "Lavendar highlights Sunway's vibrant campus life and how pre-departure support made settling in seamless from day one." },
-  { name: "Shumira", from: "Zimbabwe", to: "Malaysia", uni: "UCSI", src: "/stories/shumira.mov", fromFlag: "🇿🇼", toFlag: "🇲🇾", blurb: "Shumira's journey to UCSI shows the power of clear timelines, document checks, and ongoing post-arrival support." },
-];
+import { stories } from "@/lib/stories";
+import { useState } from "react";
 
 export default function StoriesList() {
   const [open, setOpen] = useState<string | null>(null);
@@ -51,4 +45,3 @@ export default function StoriesList() {
     </>
   );
 }
-
