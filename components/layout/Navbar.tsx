@@ -4,8 +4,9 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 const uniLogo = "https://res.cloudinary.com/dqweuq8ic/image/upload/v1762953626/uniconnect/logos/src/logos/uni-connect-logo.png";
 import clsx from "clsx";
+import type { Route } from "next";
 
-const links = [
+const links: { href: Route; label: string }[] = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
