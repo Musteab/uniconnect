@@ -1,9 +1,10 @@
 "use client";
-import Link, { type LinkProps } from "next/link";
+import Link from "next/link";
+import type { Route } from "next";
 import clsx from "clsx";
 
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  href?: LinkProps["href"];
+  href?: Route | string;
   variant?: "primary" | "secondary" | "ghost";
 };
 
@@ -16,8 +17,16 @@ export default function Button({ href, className, children, variant = "primary",
   );
 
   if (href) {
+    const isExternal = typeof href === "string" && /^(https?:\/\/|mailto:|tel:)/i.test(href);
+    if (isExternal) {
+      return (
+        <a href={href as string} className={clsx(base, className)} rel="noreferrer" target="_blank">
+          {children}
+        </a>
+      );
+    }
     return (
-      <Link href={href} className={clsx(base, className)}>
+      <Link href={href as Route} className={clsx(base, className)}>
         {children}
       </Link>
     );
