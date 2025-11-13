@@ -54,7 +54,7 @@ export default function HomePage() {
       <section className="relative overflow-hidden">
         <video className="absolute inset-0 -z-20 h-full w-full min-h-full object-cover object-[center_30%]" src="https://res.cloudinary.com/dqweuq8ic/video/upload/v1762952807/uniconnect/hero-video.mp4" autoPlay muted loop playsInline preload="metadata" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-br from-black/60 via-black/40 to-black/30" />
-        <div className="relative container-px max-w-7xl mx-auto py-20 sm:py-28 md:pl-40 lg:pl-56 xl:pl-72">
+        <div className="relative container-px max-w-7xl mx-auto py-14 sm:py-28 md:pl-40 lg:pl-56 xl:pl-72">
           <div className="hidden md:block absolute left-3 top-8 lg:left-6 lg:top-1/2 lg:-translate-y-1/2 drop-shadow-xl pointer-events-none">
             <div className="relative w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 xl:w-[26rem] xl:h-[26rem] 2xl:w-[30rem] 2xl:h-[30rem]">
               <Image src={bigLogo} alt="Uni-Connect" fill priority sizes="(max-width: 768px) 14rem, (max-width: 1024px) 18rem, 20rem" className="object-contain" />
@@ -99,11 +99,11 @@ export default function HomePage() {
               Explore Services
             </Button>
           </div>
-          <div className="mt-8 flex gap-4 overflow-x-auto pb-3 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:pb-0">
+          <div className="mt-8 hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {quickWins.map((win) => {
               const Icon = win.icon;
               return (
-                <div key={win.title} className="min-w-[220px] rounded-2xl border border-white/15 bg-black/50 p-4 text-white/90 backdrop-blur shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
+                <div key={win.title} className="rounded-2xl border border-white/15 bg-black/50 p-4 text-white/90 backdrop-blur shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
                   <div className="flex items-center gap-3">
                     <span className="rounded-xl bg-white/20 p-2 text-white">
                       <Icon className="h-4 w-4" />
@@ -116,7 +116,7 @@ export default function HomePage() {
             })}
           </div>
 
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="mt-10 hidden sm:grid grid-cols-3 gap-4">
             {[
               { icon: GraduationCap, label: "Students assisted", value: "200+" },
               { icon: Building2, label: "Partner Universities", value: "120+" },
@@ -135,30 +135,7 @@ export default function HomePage() {
       </section>
 
       {/* Why Choose */}
-      <section className="container-px max-w-7xl mx-auto py-14">
-        <div className="max-w-3xl">
-          <h2 className="text-2xl sm:text-3xl font-semibold">Why Choose Uni-Connect</h2>
-          <p className="mt-3 text-dark/70">
-            Every intake gets a squad - advisors, visa experts, and alumni buddies - so you never feel alone, even when you're planning the move from your phone.
-          </p>
-        </div>
-        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {reasons.map((reason) => {
-            const Icon = reason.icon;
-            return (
-              <motion.div key={reason.title} whileHover={{ y: -6 }} className="rounded-2xl border border-[#1d2c5c]/60 bg-gradient-to-br from-[#0c1835] via-[#102046] to-[#182b57] p-5 text-white shadow-[0_15px_40px_rgba(10,15,40,0.4)] transition">
-                <div className="flex items-center gap-3">
-                  <span className="rounded-xl bg-white/20 p-3 text-white">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <div className="text-lg font-semibold">{reason.title}</div>
-                </div>
-                <p className="text-sm text-white/80 mt-3">{reason.copy}</p>
-              </motion.div>
-            );
-          })}
-        </div>
-      </section>
+      <WhyChoose />
 
       {/* Journey */}
       <section className="relative overflow-hidden py-14 bg-gradient-to-b from-[#050c1c] via-[#071631] to-[#050c1c] text-white">
@@ -274,5 +251,58 @@ function StoriesGrid() {
         )}
       </Modal>
     </>
+  );
+}
+
+function WhyChoose() {
+  const [revealed, setRevealed] = useState(false);
+  return (
+    <section className="container-px max-w-7xl mx-auto py-14">
+      <div className="max-w-3xl space-y-4 text-center">
+        <h2 className="text-2xl sm:text-3xl font-semibold">Why Choose Uni-Connect</h2>
+        <p className="text-dark/70">
+          Every intake gets a squad - advisors, visa experts, and alumni buddies - so you never plan the big leap alone.
+        </p>
+        {!revealed && (
+          <div className="mt-4">
+            <button
+              onClick={() => setRevealed(true)}
+              className="inline-flex items-center gap-2 rounded-full border border-dashed border-dark/40 px-5 py-2 text-sm font-semibold text-dark hover:bg-dark hover:text-white transition"
+            >
+              Show me the reasons
+            </button>
+          </div>
+        )}
+      </div>
+      {revealed && (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          transition={{ duration: 0.4 }}
+          className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+        >
+          {reasons.map((reason, index) => {
+            const Icon = reason.icon;
+            return (
+              <motion.div
+                key={reason.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="rounded-2xl border border-[#1d2c5c]/60 bg-gradient-to-br from-[#0c1835] via-[#102046] to-[#182b57] p-5 text-white shadow-[0_15px_40px_rgba(10,15,40,0.4)] transition"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="rounded-xl bg-white/20 p-3 text-white">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <div className="text-lg font-semibold">{reason.title}</div>
+                </div>
+                <p className="text-sm text-white/80 mt-3">{reason.copy}</p>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+      )}
+    </section>
   );
 }
