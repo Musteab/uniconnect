@@ -52,16 +52,16 @@ export default function HomePage() {
     <PageTransition>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <video className="absolute inset-0 -z-20 h-full w-full object-cover" src="https://res.cloudinary.com/dqweuq8ic/video/upload/v1762952807/uniconnect/hero-video.mp4" autoPlay muted loop playsInline preload="metadata" />
+        <video className="absolute inset-0 -z-20 h-[120%] md:h-full w-full object-cover object-[center_30%]" src="https://res.cloudinary.com/dqweuq8ic/video/upload/v1762952807/uniconnect/hero-video.mp4" autoPlay muted loop playsInline preload="metadata" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-br from-black/60 via-black/40 to-black/30" />
         <div className="relative container-px max-w-7xl mx-auto py-20 sm:py-28 md:pl-40 lg:pl-56 xl:pl-72">
-          <div className="hidden md:block absolute left-3 top-16 lg:left-6 lg:top-1/2 lg:-translate-y-1/2 drop-shadow-lg pointer-events-none">
-            <div className="relative w-36 h-36 sm:w-52 sm:h-52 lg:w-72 lg:h-72 xl:w-80 xl:h-80 2xl:w-96 2xl:h-96">
+          <div className="hidden md:block absolute left-3 top-8 lg:left-6 lg:top-1/2 lg:-translate-y-1/2 drop-shadow-xl pointer-events-none">
+            <div className="relative w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 xl:w-[26rem] xl:h-[26rem] 2xl:w-[30rem] 2xl:h-[30rem]">
               <Image src={bigLogo} alt="Uni-Connect" fill priority sizes="(max-width: 768px) 14rem, (max-width: 1024px) 18rem, 20rem" className="object-contain" />
             </div>
           </div>
           <div className="md:hidden mb-6">
-            <div className="relative h-24 w-24 drop-shadow-lg">
+            <div className="relative h-32 w-32 drop-shadow-xl">
               <Image src={bigLogo} alt="Uni-Connect" fill sizes="64px" className="object-contain" />
             </div>
           </div>
