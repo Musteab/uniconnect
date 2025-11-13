@@ -54,82 +54,85 @@ export default function HomePage() {
       <section className="relative overflow-hidden">
         <video className="absolute inset-0 -z-20 h-full w-full min-h-full object-cover object-[center_30%]" src="https://res.cloudinary.com/dqweuq8ic/video/upload/v1762952807/uniconnect/hero-video.mp4" autoPlay muted loop playsInline preload="metadata" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-br from-black/60 via-black/40 to-black/30" />
-        <div className="relative container-px max-w-7xl mx-auto py-14 sm:py-28 md:pl-40 lg:pl-56 xl:pl-72">
-          <div className="hidden md:block absolute left-3 top-8 lg:left-6 lg:top-1/2 lg:-translate-y-1/2 drop-shadow-xl pointer-events-none">
-            <div className="relative w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 xl:w-[26rem] xl:h-[26rem] 2xl:w-[30rem] 2xl:h-[30rem]">
-              <Image src={bigLogo} alt="Uni-Connect" fill priority sizes="(max-width: 768px) 14rem, (max-width: 1024px) 18rem, 20rem" className="object-contain" />
+        <div className="relative container-px max-w-7xl mx-auto py-14 sm:py-28">
+          <div className="flex flex-col md:flex-row md:items-center md:gap-12 lg:gap-20">
+            <div className="hidden md:flex flex-shrink-0 justify-center drop-shadow-xl pointer-events-none">
+              <div className="relative w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 xl:w-[26rem] xl:h-[26rem] 2xl:w-[30rem] 2xl:h-[30rem]">
+                <Image src={bigLogo} alt="Uni-Connect" fill priority sizes="(max-width: 1024px) 18rem, 20rem" className="object-contain" />
+              </div>
             </div>
-          </div>
-          <div className="md:hidden mb-6">
-            <div className="relative h-32 w-32 drop-shadow-xl">
-              <Image src={bigLogo} alt="Uni-Connect" fill sizes="64px" className="object-contain" />
-            </div>
-          </div>
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-black/40 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-white/90 backdrop-blur"
-          >
-            <Sparkles className="h-4 w-4 text-accent" /> 2026 intakes filling fast
-          </motion.div>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl sm:text-6xl font-bold tracking-tight bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent"
-          >
-            Study Abroad, Simplified.
-          </motion.h1>
-          <p className="mt-4 max-w-2xl text-lg text-white/85">
-            Uni-Connect helps students get into top universities with expert guidance, visa support, and scholarships.
-          </p>
-          <div className="mt-4 flex flex-wrap gap-3 text-sm text-white/90">
-            {heroHighlights.map((highlight) => (
-              <span key={highlight.label} className="rounded-full border border-white/30 bg-black/40 px-4 py-2 backdrop-blur">
-                <span className="font-semibold text-white">{highlight.label}</span> {highlight.detail}
-              </span>
-            ))}
-          </div>
-          <div className="mt-8 flex flex-col sm:flex-row gap-3">
-            <Button href="https://wa.me/60143859084" className="w-full sm:w-auto">
-              Get Started
-            </Button>
-            <Button href="/services" variant="secondary" className="w-full sm:w-auto">
-              Explore Services
-            </Button>
-          </div>
-          <div className="mt-8 hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {quickWins.map((win) => {
-              const Icon = win.icon;
-              return (
-                <div key={win.title} className="rounded-2xl border border-white/15 bg-black/50 p-4 text-white/90 backdrop-blur shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
-                  <div className="flex items-center gap-3">
-                    <span className="rounded-xl bg-white/20 p-2 text-white">
-                      <Icon className="h-4 w-4" />
-                    </span>
-                    <p className="text-sm font-semibold">{win.title}</p>
-                  </div>
-                  <p className="mt-3 text-xs text-white/70">{win.detail}</p>
+            <div className="flex-1">
+              <div className="md:hidden mb-6">
+                <div className="relative h-32 w-32 drop-shadow-xl">
+                  <Image src={bigLogo} alt="Uni-Connect" fill sizes="64px" className="object-contain" />
                 </div>
-              );
-            })}
-          </div>
-
-          <div className="mt-10 hidden sm:grid grid-cols-3 gap-4">
-            {[
-              { icon: GraduationCap, label: "Students assisted", value: "200+" },
-              { icon: Building2, label: "Partner Universities", value: "120+" },
-              { icon: CheckCircle2, label: "Success Rate", value: "100%" }
-            ].map((s, i) => (
-              <motion.div key={s.label} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ delay: 0.1 * i }} className="glass rounded-xl p-5 flex items-center gap-3">
-                <s.icon className="text-accent" />
-                <div>
-                  <div className="text-2xl font-semibold">{s.value}</div>
-                  <div className="text-sm text-dark/70">{s.label}</div>
-                </div>
+              </div>
+              <motion.div
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-black/40 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-white/90 backdrop-blur"
+              >
+                <Sparkles className="h-4 w-4 text-accent" /> 2026 intakes filling fast
               </motion.div>
-            ))}
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="text-4xl sm:text-6xl font-bold tracking-tight bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent"
+              >
+                Study Abroad, Simplified.
+              </motion.h1>
+              <p className="mt-4 max-w-2xl text-lg text-white/85">
+                Uni-Connect helps students get into top universities with expert guidance, visa support, and scholarships.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-3 text-sm text-white/90">
+                {heroHighlights.map((highlight) => (
+                  <span key={highlight.label} className="rounded-full border border-white/30 bg-black/40 px-4 py-2 backdrop-blur">
+                    <span className="font-semibold text-white">{highlight.label}</span> {highlight.detail}
+                  </span>
+                ))}
+              </div>
+              <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                <Button href="https://wa.me/60143859084" className="w-full sm:w-auto">
+                  Get Started
+                </Button>
+                <Button href="/services" variant="secondary" className="w-full sm:w-auto">
+                  Explore Services
+                </Button>
+              </div>
+              <div className="mt-8 hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {quickWins.map((win) => {
+                  const Icon = win.icon;
+                  return (
+                    <div key={win.title} className="rounded-2xl border border-white/15 bg-black/50 p-4 text-white/90 backdrop-blur shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
+                      <div className="flex items-center gap-3">
+                        <span className="rounded-xl bg-white/20 p-2 text-white">
+                          <Icon className="h-4 w-4" />
+                        </span>
+                        <p className="text-sm font-semibold">{win.title}</p>
+                      </div>
+                      <p className="mt-3 text-xs text-white/70">{win.detail}</p>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="mt-10 hidden sm:grid grid-cols-3 gap-4">
+                {[
+                  { icon: GraduationCap, label: "Students assisted", value: "200+" },
+                  { icon: Building2, label: "Partner Universities", value: "120+" },
+                  { icon: CheckCircle2, label: "Success Rate", value: "100%" }
+                ].map((s, i) => (
+                  <motion.div key={s.label} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ delay: 0.1 * i }} className="glass rounded-xl p-5 flex items-center gap-3">
+                    <s.icon className="text-accent" />
+                    <div>
+                      <div className="text-2xl font-semibold">{s.value}</div>
+                      <div className="text-sm text-dark/70">{s.label}</div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
