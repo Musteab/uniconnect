@@ -7,10 +7,10 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & { label?: string; err
 export default function Input({ label, error, className, ...props }: Props) {
   return (
     <label className="block">
-      {label && <div className="mb-1 text-sm text-dark/80">{label}</div>}
+      {label && <div className="mb-1 text-sm text-[var(--muted-text)]">{label}</div>}
       <input
         className={clsx(
-          "w-full rounded-md border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-accent",
+          "w-full rounded-md border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-accent bg-[var(--input-bg)] border-[var(--input-border)] text-[var(--input-text)] placeholder:text-[var(--input-placeholder)]",
           error && "border-red-500",
           className
         )}
@@ -20,4 +20,3 @@ export default function Input({ label, error, className, ...props }: Props) {
     </label>
   );
 }
-

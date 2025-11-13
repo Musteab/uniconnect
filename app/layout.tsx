@@ -8,6 +8,7 @@ import QuickHelpBar from "@/components/layout/QuickHelpBar";
 import JerseyPromo from "@/components/layout/JerseyPromo";
 import SessionProviderWrapper from "@/components/auth/SessionProviderWrapper";
 import UniBuddy from "@/components/layout/UniBuddy";
+import { ThemeProvider } from "@/context/ThemeContext";
 
 export const metadata: Metadata = {
   title: {
@@ -30,13 +31,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen flex flex-col" suppressHydrationWarning>
         <SessionProviderWrapper>
           <AdminProvider>
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
-            <SeedData />
-            <QuickHelpBar />
-            <JerseyPromo />
-            <UniBuddy />
+            <ThemeProvider>
+              <Navbar />
+              <main className="flex-1">{children}</main>
+              <Footer />
+              <SeedData />
+              <QuickHelpBar />
+              <JerseyPromo />
+              <UniBuddy />
+            </ThemeProvider>
           </AdminProvider>
         </SessionProviderWrapper>
       </body>

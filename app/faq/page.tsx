@@ -1,7 +1,32 @@
 import PageTransition from "@/components/layout/PageTransition";
 import AccessibleFaq from "@/components/faq/AccessibleFaq";
+import { MessageCircle, FileText, PhoneCall } from "lucide-react";
 
 export const metadata = { title: "FAQs" };
+
+const quickHelps = [
+  { label: "Chat on WhatsApp", href: "https://wa.me/60143859084?text=Hi%20Uni-Connect,%20I%20have%20a%20question%20about...", Icon: MessageCircle, note: "Avg. reply in < 10 min" },
+  { label: "Submit documents for review", href: "mailto:uniconnectagency@gmail.com", Icon: FileText, note: "We send edits within 24h" },
+  { label: "Schedule phone callback", href: "tel:+60143859084", Icon: PhoneCall, note: "Pick a MYT slot that fits you" }
+];
+
+const guideCards = [
+  {
+    title: "Budget calculator template",
+    detail: "Download the Google Sheet we use with every student to map tuition + housing + visa fees.",
+    href: "https://res.cloudinary.com/dqweuq8ic/raw/upload/v1762992992/UniConnect_Student_Budget_rn2zqj.xlsx"
+  },
+  {
+    title: "Visa readiness checklist",
+    detail: "Step-by-step timeline for EMGS, medical, and embassy submission.",
+    href: "https://res.cloudinary.com/dqweuq8ic/image/upload/v1762993454/emgs_bya5ba.webp"
+  },
+  {
+    title: "Parents briefing deck",
+    detail: "Slides you can share at home to explain why Malaysia makes sense.",
+    href: "https://res.cloudinary.com/dqweuq8ic/raw/upload/v1762993789/Presentation_-_Why_Malaysia_Makes_Sense_uy6bcb.pptx"
+  }
+];
 
 export default function FaqPage() {
   const items = [
@@ -86,11 +111,61 @@ export default function FaqPage() {
       <section className="container-px max-w-5xl mx-auto py-10">
         <h1 className="text-3xl font-semibold">Frequently Asked Questions</h1>
         <p className="text-dark/70 mt-2">Common questions about studying in Malaysia.</p>
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          {quickHelps.map((item) => {
+            const Icon = item.Icon;
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                className="rounded-2xl border border-white/15 bg-[#050f25] p-5 text-white shadow-[0_15px_35px_rgba(0,0,0,0.25)] hover:shadow-glow transition"
+                target={item.href.startsWith("http") ? "_blank" : undefined}
+                rel={item.href.startsWith("http") ? "noreferrer" : undefined}
+              >
+                <div className="flex items-center gap-3">
+                  <span className="rounded-xl bg-white/15 p-3 text-white">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <div>
+                    <p className="font-semibold leading-tight">{item.label}</p>
+                    <p className="text-xs text-white/70">{item.note}</p>
+                  </div>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+        <div className="mt-8 rounded-3xl border border-white/10 bg-gradient-to-r from-primary via-primary/80 to-secondary text-white p-6">
+          <p className="text-xs uppercase tracking-[0.35em] text-white/70">Starter kit</p>
+          <div className="mt-3 grid gap-4 md:grid-cols-3">
+            {guideCards.map((guide) => (
+              <a
+                key={guide.title}
+                href={guide.href}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-2xl bg-white/10 p-4 backdrop-blur hover:bg-white/20 transition"
+              >
+                <p className="text-sm font-semibold">{guide.title}</p>
+                <p className="mt-2 text-xs text-white/80">{guide.detail}</p>
+              </a>
+            ))}
+          </div>
+        </div>
         <div className="mt-6">
           <AccessibleFaq items={items} />
+        </div>
+        <div className="mt-10 rounded-2xl border border-white/10 bg-[#050f25] text-white p-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p className="text-xs uppercase tracking-[0.35em] text-white/60">Still stuck?</p>
+            <h3 className="text-xl font-semibold">Tell us your situation in 3 sentences</h3>
+            <p className="text-sm text-white/70 mt-1">We will reply with a personalised voice note or Loom explainer.</p>
+          </div>
+          <a href="https://wa.me/60143859084?text=Hi%20Uni-Connect,%20here%20is%20my%20question..." className="inline-flex items-center justify-center rounded-md bg-primary text-white px-5 py-3 text-sm font-semibold hover:bg-primary/90">
+            Send quick note
+          </a>
         </div>
       </section>
     </PageTransition>
   );
 }
-

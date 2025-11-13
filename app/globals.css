@@ -3,11 +3,79 @@
 @tailwind utilities;
 
 :root {
-  --color-primary: #1D3557;
-  --color-secondary: #457B9D;
-  --color-accent: #2A9D8F;
-  --color-light: #F5F5F5;
+  --color-primary: #1d3557;
+  --color-secondary: #457b9d;
+  --color-accent: #2a9d8f;
+  --color-light: #f5f5f5;
   --color-dark: #333333;
+
+  --bg-canvas: #0b0f19;
+  --text-primary: #f3f6fc;
+  --surface: rgba(15, 23, 42, 0.65);
+  --border-soft: rgba(255, 255, 255, 0.12);
+  --nav-bg: #d8eafe;
+  --nav-text: #0f172a;
+  --nav-border: rgba(15, 23, 42, 0.15);
+  --muted-text: rgba(226, 232, 240, 0.8);
+  --input-bg: #111a2b;
+  --input-border: rgba(255, 255, 255, 0.2);
+  --input-text: #f5f7fb;
+  --input-placeholder: rgba(229, 231, 235, 0.65);
+}
+
+:root[data-theme="light"] {
+  --bg-canvas: #f5f7fb;
+  --text-primary: #0f172a;
+  --surface: #ffffffef;
+  --border-soft: rgba(15, 23, 42, 0.12);
+  --nav-bg: #d8eafe;
+  --nav-text: #0f172a;
+  --nav-border: rgba(15, 23, 42, 0.15);
+  --muted-text: rgba(51, 65, 85, 0.85);
+  --input-bg: #ffffff;
+  --input-border: rgba(15, 23, 42, 0.15);
+  --input-text: #0f172a;
+  --input-placeholder: rgba(100, 116, 139, 0.8);
+}
+
+:root[data-theme="light"] .text-white {
+  color: #0f172a !important;
+}
+:root[data-theme="light"] .text-white\/30 {
+  color: rgba(15, 23, 42, 0.3) !important;
+}
+:root[data-theme="light"] .text-white\/60 {
+  color: rgba(15, 23, 42, 0.6) !important;
+}
+:root[data-theme="light"] .text-white\/70 {
+  color: rgba(15, 23, 42, 0.7) !important;
+}
+:root[data-theme="light"] .text-white\/75 {
+  color: rgba(15, 23, 42, 0.75) !important;
+}
+:root[data-theme="light"] .text-white\/80 {
+  color: rgba(15, 23, 42, 0.8) !important;
+}
+:root[data-theme="light"] .text-white\/85 {
+  color: rgba(15, 23, 42, 0.85) !important;
+}
+:root[data-theme="light"] .text-white\/90 {
+  color: rgba(15, 23, 42, 0.9) !important;
+}
+
+:root[data-theme="light"] .bg-white\/5 {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+:root[data-theme="light"] .bg-white\/10 {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+:root[data-theme="light"] .bg-white\/15 {
+  background-color: rgba(255, 255, 255, 0.98) !important;
+}
+:root[data-theme="light"] .border-white\/10,
+:root[data-theme="light"] .border-white\/15,
+:root[data-theme="light"] .border-white\/20 {
+  border-color: rgba(15, 23, 42, 0.12) !important;
 }
 
 html, body {
@@ -16,17 +84,47 @@ html, body {
 }
 
 body {
-  @apply bg-[#0B0F19] text-dark antialiased; /* dark canvas, light text via theme.dark */
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
 }
 
 .glass {
-  background: rgba(15, 23, 42, 0.6);
+  background: var(--surface);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-soft);
 }
 
 .container-px {
   @apply px-4 sm:px-6 lg:px-8;
+}
+
+.theme-section {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  color: var(--text-primary);
+}
+
+.theme-hero {
+  background: linear-gradient(140deg, #030712 0%, #0f172a 45%, #020617 100%);
+}
+:root[data-theme="light"] .theme-hero {
+  background: linear-gradient(140deg, #f2f6ff 0%, #dbe8ff 50%, #cddffb 100%);
+}
+
+.about-gradient {
+  background: linear-gradient(160deg, #01030a 0%, #050f25 60%, #02040b 100%);
+}
+:root[data-theme="light"] .about-gradient {
+  background: linear-gradient(160deg, #edf3ff 0%, #d7e6ff 60%, #c8dbf7 100%);
+}
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.55);
+}
+:root[data-theme="light"] .hero-overlay {
+  background: rgba(255, 255, 255, 0.55);
 }

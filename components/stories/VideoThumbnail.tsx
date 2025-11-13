@@ -1,5 +1,5 @@
 "use client";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 function toCloudinaryPoster(url: string): string | null {
   try {
@@ -13,21 +13,36 @@ function toCloudinaryPoster(url: string): string | null {
   } catch { return null; }
 }
 
-export default function VideoThumbnail({ src, alt, className }: { src: string; alt: string; className?: string }) {
-  const poster = useMemo(() => toCloudinaryPoster(src), [src]);
+type Props = {
+  src: string;
+  alt: string;
+  className?: string;
+  posterSrc?: string;
+};
+
+export default function VideoThumbnail({ src, alt, className = "", posterSrc }: Props) {
+  const poster = useMemo(() => posterSrc || toCloudinaryPoster(src), [posterSrc, src]);
+  const [loaded, setLoaded] = useState(false);
+  const [errored, setErrored] = useState(false);
+
+  if (!poster || errored) {
+    return (
+      <div className={`w-full h-full grid place-items-center bg-slate-800 text-white text-xs ${className}`}>
+        No preview
+      </div>
+    );
+  }
+
   return (
     <div className={className}>
-      {poster ? (
-        <img
-          src={poster}
-          alt={alt}
-          className="w-full h-full object-cover opacity-0 transition-opacity duration-300"
-          onLoad={(e) => (e.currentTarget.style.opacity = "1")}
-        />
-      ) : (
-        <div className="w-full h-full grid place-items-center bg-light text-xs text-dark/70">Loading…</div>
-      )}
+      <img
+        src={poster}
+        alt={alt}
+        className={`w-full h-full object-cover transition-opacity duration-300 ${loaded ? "opacity-100" : "opacity-0"}`}
+        onLoad={() => setLoaded(true)}
+        onError={() => setErrored(true)}
+        loading="lazy"
+      />
     </div>
   );
 }
-

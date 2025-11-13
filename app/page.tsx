@@ -16,7 +16,6 @@ import {
   MapPin,
   Medal,
   MessageCircle,
-  PhoneCall,
   PlaneTakeoff,
   ShieldCheck,
   Sparkles,
@@ -28,7 +27,7 @@ import { useState } from "react";
 
 const bigLogo = "https://res.cloudinary.com/dqweuq8ic/image/upload/v1762952173/uniconnect/z6ojkkeopr3ahmdlbbyl.png";
 const heroHighlights = [
-  { label: "Africa to Malaysia specialists", detail: "Dedicated mentors on WhatsApp every day." },
+  { label: "World to Malaysia specialists", detail: "Dedicated mentors on WhatsApp every day." },
   { label: "Scholarship-first planning", detail: "Average RM18k saved per intake." }
 ];
 const quickWins: { title: string; detail: string; icon: LucideIcon }[] = [
@@ -43,7 +42,7 @@ const reasons: { title: string; copy: string; icon: LucideIcon }[] = [
   { title: "Visa Confidence", copy: "Document audits, mock interviews, and post-arrival care.", icon: ShieldCheck }
 ];
 const journeySteps: { title: string; copy: string; meta: string; icon: LucideIcon }[] = [
-  { title: "Profile Deep-Dive", copy: "30-min discovery on Zoom to map target courses, budget, and timeline.", meta: "Day 1", icon: CalendarDays },
+  { title: "Document Vetting", copy: "Send transcripts and passport scans for an initial review within 24 hours.", meta: "Day 1", icon: CalendarDays },
   { title: "Offer & Funding Sprint", copy: "We polish SOPs, fast-track applications, and layer scholarships.", meta: "Days 3 - 10", icon: FileCheck2 },
   { title: "Visa & Landing Prep", copy: "Medical, visa, housing, and airport pickup arranged in one checklist.", meta: "Days 11 - 21", icon: PlaneTakeoff }
 ];
@@ -56,13 +55,13 @@ export default function HomePage() {
         <video className="absolute inset-0 -z-20 h-full w-full object-cover" src="https://res.cloudinary.com/dqweuq8ic/video/upload/v1762952807/uniconnect/hero-video.mp4" autoPlay muted loop playsInline preload="metadata" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-br from-black/60 via-black/40 to-black/30" />
         <div className="relative container-px max-w-7xl mx-auto py-20 sm:py-28 md:pl-40 lg:pl-56 xl:pl-72">
-          <div className="hidden md:block absolute left-3 top-20 lg:left-6 lg:top-1/2 lg:-translate-y-1/2 drop-shadow-lg pointer-events-none">
-            <div className="relative w-28 h-28 sm:w-40 sm:h-40 lg:w-56 lg:h-56 xl:w-72 xl:h-72 2xl:w-80 2xl:h-80">
+          <div className="hidden md:block absolute left-3 top-16 lg:left-6 lg:top-1/2 lg:-translate-y-1/2 drop-shadow-lg pointer-events-none">
+            <div className="relative w-36 h-36 sm:w-52 sm:h-52 lg:w-72 lg:h-72 xl:w-80 xl:h-80 2xl:w-96 2xl:h-96">
               <Image src={bigLogo} alt="Uni-Connect" fill priority sizes="(max-width: 768px) 14rem, (max-width: 1024px) 18rem, 20rem" className="object-contain" />
             </div>
           </div>
           <div className="md:hidden mb-6">
-            <div className="relative h-16 w-16">
+            <div className="relative h-24 w-24 drop-shadow-lg">
               <Image src={bigLogo} alt="Uni-Connect" fill sizes="64px" className="object-contain" />
             </div>
           </div>
@@ -70,7 +69,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-white/80 backdrop-blur"
+            className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-black/40 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-white/90 backdrop-blur"
           >
             <Sparkles className="h-4 w-4 text-accent" /> 2026 intakes filling fast
           </motion.div>
@@ -85,9 +84,9 @@ export default function HomePage() {
           <p className="mt-4 max-w-2xl text-lg text-white/85">
             Uni-Connect helps students get into top universities with expert guidance, visa support, and scholarships.
           </p>
-          <div className="mt-4 flex flex-wrap gap-3 text-sm text-white/80">
+          <div className="mt-4 flex flex-wrap gap-3 text-sm text-white/90">
             {heroHighlights.map((highlight) => (
-              <span key={highlight.label} className="rounded-full bg-white/10 px-4 py-2 backdrop-blur">
+              <span key={highlight.label} className="rounded-full border border-white/30 bg-black/40 px-4 py-2 backdrop-blur">
                 <span className="font-semibold text-white">{highlight.label}</span> {highlight.detail}
               </span>
             ))}
@@ -104,9 +103,9 @@ export default function HomePage() {
             {quickWins.map((win) => {
               const Icon = win.icon;
               return (
-                <div key={win.title} className="min-w-[220px] rounded-2xl border border-white/10 bg-white/10 p-4 text-white/90 backdrop-blur">
+                <div key={win.title} className="min-w-[220px] rounded-2xl border border-white/15 bg-black/50 p-4 text-white/90 backdrop-blur shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
                   <div className="flex items-center gap-3">
-                    <span className="rounded-xl bg-white/15 p-2 text-white">
+                    <span className="rounded-xl bg-white/20 p-2 text-white">
                       <Icon className="h-4 w-4" />
                     </span>
                     <p className="text-sm font-semibold">{win.title}</p>
@@ -119,7 +118,7 @@ export default function HomePage() {
 
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
-              { icon: GraduationCap, label: "Students Placed", value: "200+" },
+              { icon: GraduationCap, label: "Students assisted", value: "200+" },
               { icon: Building2, label: "Partner Universities", value: "120+" },
               { icon: CheckCircle2, label: "Success Rate", value: "100%" }
             ].map((s, i) => (
@@ -135,14 +134,11 @@ export default function HomePage() {
           <div className="mt-6 rounded-2xl border border-white/10 bg-white/10 p-4 text-white backdrop-blur flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-xs uppercase tracking-wide text-white/70">Need answers right now?</p>
-              <p className="text-lg font-semibold">Chat with a student mentor within minutes.</p>
+              <p className="text-lg font-semibold">Send us a WhatsApp and get a response within minutes.</p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+            <div className="flex gap-2 w-full sm:w-auto">
               <Button href="https://wa.me/60143859084" className="w-full sm:w-auto gap-2">
                 <MessageCircle className="h-4 w-4" /> WhatsApp Mentor
-              </Button>
-              <Button href="tel:+60143859084" variant="secondary" className="w-full sm:w-auto gap-2 !bg-white/10 !text-white !border !border-white/30 hover:!bg-white/20">
-                <PhoneCall className="h-4 w-4" /> Schedule Call
               </Button>
             </div>
           </div>
@@ -161,14 +157,14 @@ export default function HomePage() {
           {reasons.map((reason) => {
             const Icon = reason.icon;
             return (
-              <motion.div key={reason.title} whileHover={{ y: -6 }} className="rounded-2xl border bg-white p-5 shadow-sm hover:shadow-glow transition">
+              <motion.div key={reason.title} whileHover={{ y: -6 }} className="rounded-2xl border border-[#1d2c5c]/60 bg-gradient-to-br from-[#0c1835] via-[#102046] to-[#182b57] p-5 text-white shadow-[0_15px_40px_rgba(10,15,40,0.4)] transition">
                 <div className="flex items-center gap-3">
-                  <span className="rounded-xl bg-light p-3 text-primary">
+                  <span className="rounded-xl bg-white/20 p-3 text-white">
                     <Icon className="h-5 w-5" />
                   </span>
                   <div className="text-lg font-semibold">{reason.title}</div>
                 </div>
-                <p className="text-sm text-dark/70 mt-3">{reason.copy}</p>
+                <p className="text-sm text-white/80 mt-3">{reason.copy}</p>
               </motion.div>
             );
           })}
@@ -235,16 +231,16 @@ export default function HomePage() {
           <div className="absolute inset-y-0 right-0 w-1/2 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_top,white,transparent)]" />
           <div className="relative z-10 max-w-2xl space-y-4">
             <p className="text-xs uppercase tracking-[0.3em] text-white/70">Ready?</p>
-            <h2 className="text-3xl font-semibold">Book a free 15-min strategy call</h2>
+            <h2 className="text-3xl font-semibold">Send us a message and we will get back to you</h2>
             <p className="text-white/80">
-              Tell us your dream campus and budget. We will reply with a tailored short list, scholarship pointers, and a mobile-friendly plan within 24 hours.
+              Drop your questions or documents on WhatsApp and we will reply with a personalised shortlist, scholarship advice, and action plan.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
-              <Button href="/contact" className="w-full sm:w-auto">
-                Book the Call
-              </Button>
-              <Button href="mailto:uniconnectagency@gmail.com" variant="secondary" className="w-full sm:w-auto !bg-white/10 !text-white !border !border-white/30 hover:!bg-white/20">
-                Send My Docs
+              <Button
+                href="https://wa.me/60143859084?text=Hi%20Uni-Connect%2C%20I%20would%20like%20to%20send%20my%20documents%20for%20initial%20vetting."
+                className="w-full sm:w-auto gap-2"
+              >
+                <MessageCircle className="h-4 w-4" /> Send via WhatsApp
               </Button>
             </div>
           </div>
@@ -269,7 +265,7 @@ function StoriesGrid() {
         {storyEntries.map((s) => (
           <button key={s.src} onClick={() => setOpen(s.src)} className="text-left rounded-xl border border-white/10 p-3 bg-light text-dark hover:shadow-glow transition">
             <div className="relative aspect-video rounded-md overflow-hidden">
-              <VideoThumbnail src={s.src} alt={`${s.name} story`} className="w-full h-full" />
+              <VideoThumbnail src={s.src} posterSrc={s.thumb} alt={`${s.name} story`} className="w-full h-full" />
               <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition grid place-items-center text-white text-sm">Play</div>
             </div>
             <div className="mt-2 font-medium">{s.name}</div>
