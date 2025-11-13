@@ -131,17 +131,6 @@ export default function HomePage() {
               </motion.div>
             ))}
           </div>
-          <div className="mt-6 rounded-2xl border border-white/10 bg-white/10 p-4 text-white backdrop-blur flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="text-xs uppercase tracking-wide text-white/70">Need answers right now?</p>
-              <p className="text-lg font-semibold">Send us a WhatsApp and get a response within minutes.</p>
-            </div>
-            <div className="flex gap-2 w-full sm:w-auto">
-              <Button href="https://wa.me/60143859084" className="w-full sm:w-auto gap-2">
-                <MessageCircle className="h-4 w-4" /> WhatsApp Mentor
-              </Button>
-            </div>
-          </div>
         </div>
       </section>
 
