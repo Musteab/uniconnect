@@ -51,7 +51,7 @@ export default function JerseyPromo() {
           </div>
           <div className="p-4">
             <div className="text-sm leading-snug text-white/90">
-              Get an exclusive Uniconnect jersey upon successful enrolment or by refering your to apply thru us.
+              Get an exclusive Uniconnect jersey upon successful enrolment or by referring your friends to apply through us.
             </div>
             <div className="mt-3 flex items-center justify-end gap-2">
               <button onClick={closeSession} className="inline-flex items-center rounded-md border border-white/15 px-3 py-1.5 text-xs text-white/90 hover:bg-white/10 transition">Close</button>
