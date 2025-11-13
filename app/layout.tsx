@@ -19,7 +19,8 @@ export const metadata: Metadata = {
     title: "Uni-Connect",
     description: "Study abroad made simple.",
     type: "website",
-    url: "https://uniconnect.example.com"
+    url: "https://uniconnect.example.com",
+    images: ["https://res.cloudinary.com/dqweuq8ic/image/upload/v1762982929/herologo_yy16u5.png"]
   },
   metadataBase: new URL("https://uniconnect.example.com")
 };
