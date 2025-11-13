@@ -37,7 +37,7 @@ export default function AboutPage() {
           <div className="max-w-3xl">
             <h2 className="text-2xl font-medium">Our Story</h2>
             <p className="mt-3 text-white/80">
-              We empower Malaysian students to study abroad through personalized guidance, transparent processes, and lifelong support.
+              We empower international students to study in Malaysia through personalized guidance, transparent processes, and lifelong support.
             </p>
             <ul className="mt-4 space-y-2 text-sm text-white/70 list-disc list-inside">
               <li>End-to-end support from shortlisting to post-arrival</li>
