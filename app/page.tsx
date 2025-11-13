@@ -52,7 +52,7 @@ export default function HomePage() {
     <PageTransition>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <video className="absolute inset-0 -z-20 h-[120%] md:h-full w-full object-cover object-[center_30%]" src="https://res.cloudinary.com/dqweuq8ic/video/upload/v1762952807/uniconnect/hero-video.mp4" autoPlay muted loop playsInline preload="metadata" />
+        <video className="absolute inset-0 -z-20 h-full w-full min-h-full object-cover object-[center_30%]" src="https://res.cloudinary.com/dqweuq8ic/video/upload/v1762952807/uniconnect/hero-video.mp4" autoPlay muted loop playsInline preload="metadata" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-br from-black/60 via-black/40 to-black/30" />
         <div className="relative container-px max-w-7xl mx-auto py-20 sm:py-28 md:pl-40 lg:pl-56 xl:pl-72">
           <div className="hidden md:block absolute left-3 top-8 lg:left-6 lg:top-1/2 lg:-translate-y-1/2 drop-shadow-xl pointer-events-none">
